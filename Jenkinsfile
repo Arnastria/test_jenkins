@@ -2,19 +2,20 @@ pipeline{
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
+
+        stage('Flutter Clean'){
+            steps{
+                sh 'flutter clean'
             }
         }
-        stage('Test') {
+        stage('Build Debug Flutter') {
             steps {
-                echo 'Testing..'
+                echo 'flutter build apk --debug'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+        stage('Build Release FAT Flutter'){
+            steps{
+                echo 'flutter build apk --release'
             }
         }
     }
