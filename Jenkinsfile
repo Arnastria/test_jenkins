@@ -10,13 +10,21 @@ pipeline{
         }
         stage('Build Debug Flutter') {
             steps {
-                echo 'flutter build apk --debug'
+                sh 'flutter build apk --debug'
             }
         }
         stage('Build Release FAT Flutter'){
             steps{
-                echo 'flutter build apk --release'
+                sh 'flutter build apk --release'
             }
         }
+        
+    }
+
+    post{
+        always{
+            archiveArtifacts artifacts: 'build/app/outputs/apk/**/*.apk', fingerprint: true, onlyIfSuccessful: true, defaultExcludes: true, allowEmptyArchive: true
+        }
+        
     }
 }
