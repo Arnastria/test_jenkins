@@ -10,20 +10,20 @@ pipeline{
         }
         stage('Build Debug Flutter') {
             steps {
-                sh 'flutter build apk --debug'
+                sh 'sudo flutter build apk --debug'
             }
         }
         stage('Build Release FAT Flutter'){
             steps{
-                sh 'flutter build apk --release' 
+                sh 'sudo flutter build apk --release' 
             }
         }
 
-        stage("Build debug ios Flutter"){
-            steps{
-                sh 'flutter build ios --debug'
-            }
-        }
+        // stage("Build debug ios Flutter"){
+        //     steps{
+        //         sh 'flutter build ios --debug'
+        //     }
+        // }
         
     }
 
