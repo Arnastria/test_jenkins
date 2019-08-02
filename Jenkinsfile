@@ -5,6 +5,7 @@ pipeline{
 
         stage('Flutter Clean'){
             steps{
+                sh 'source ~/.bashrc'
                 sh 'flutter clean'
             }
         }
@@ -15,7 +16,13 @@ pipeline{
         }
         stage('Build Release FAT Flutter'){
             steps{
-                sh 'flutter build apk --release'
+                sh 'flutter build apk --release' 
+            }
+        }
+
+        stage("Build debug ios Flutter"){
+            steps{
+                sh 'flutter build ios --debug'
             }
         }
         
@@ -24,6 +31,7 @@ pipeline{
     post{
         always{
             archiveArtifacts artifacts: 'build/app/outputs/apk/**/*.apk', fingerprint: true, onlyIfSuccessful: true, defaultExcludes: true, allowEmptyArchive: true
+            archiveArtifacts artifacts: 'build/app/outputs/app/**/*.app', fingerprint: true, onlyIfSuccessful: true, defaultExcludes: true, allowEmptyArchive: true
         }
         
     }
