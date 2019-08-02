@@ -6,7 +6,6 @@ pipeline{
         stage('Flutter Clean'){
             steps{
                 sh 'flutter doctor'
-                sh 'flutter clean'
             }
         }
         stage('Build Debug Flutter') {
