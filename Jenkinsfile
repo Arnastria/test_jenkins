@@ -5,7 +5,7 @@ pipeline{
 
         stage('Flutter Clean'){
             steps{
-                sh 'source ~/.bashrc'
+                sh 'flutter doctor'
                 sh 'flutter clean'
             }
         }
